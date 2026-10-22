@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Victorian planning lookup</title>
+  <meta name="description" content="Enter a Victorian address to see the planning zones and overlays that apply, with links to the planning scheme clauses. Built from official open data.">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.css">
+  <link rel="stylesheet" href="assets/app.css">
+  <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@5.24.0/dist/maplibre-gl.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@turf/turf@7.2.0/turf.min.js" defer></script>
+  <script src="assets/app.js" type="module"></script>
+</head>
+<body>
+  <header class="site">
+    <a class="home" href="https://ryanward.dev/projects/">ryanward.dev / projects</a>
+  </header>
+
+  <main>
+    <h1>Victorian planning lookup</h1>
+    <p class="lede">Enter an address to see the planning zones and overlays that apply, with their purpose and links to the planning scheme. Or click anywhere on the map.</p>
+
+    <form id="search" class="search" autocomplete="off">
+      <label for="q" class="visually-hidden">Address</label>
+      <input id="q" name="q" type="search" placeholder="e.g. 1 Station Street, Aspendale" required>
+      <button type="submit">Look up</button>
+    </form>
+    <div id="examples" class="examples">
+      Try:
+      <button type="button" data-q="1 Station Street Aspendale">1 Station St, Aspendale</button>
+      <button type="button" data-q="1170 Nepean Highway Cheltenham">1170 Nepean Hwy, Cheltenham</button>
+      <button type="button" data-q="6 Bowman Street Aspendale">6 Bowman St, Aspendale</button>
+    </div>
+
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+    <ul id="choices" class="choices" hidden></ul>
+
+    <div class="layout">
+      <figure class="map-wrap">
+        <div id="map" class="map" role="region" aria-label="Map. Click to look up a location."></div>
+        <figcaption class="map-key"><span class="key-lot"></span> the lot <span class="key-overlay"></span> overlays that apply · zone colours match the swatches</figcaption>
+      </figure>
+      <section id="results" class="results" aria-label="Planning controls" hidden></section>
+    </div>
+
+    <aside class="note">
+      <p><strong>Not legal advice.</strong> This is a personal project that reads official open data. Zones and overlays can change, and a lot can depend on detail this page doesn't show. Check the planning scheme, get an official <a href="https://www.planning.vic.gov.au/planning-schemes/using-vicplan">planning property report from VicPlan</a>, or ask the council before relying on it.</p>
+    </aside>
+  </main>
+
+  <footer class="site">
+    <p>Data: Vicmap Planning, Vicmap Address and Vicmap Property © State of Victoria (Department of Transport and Planning), <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Clause text from the <a href="https://planning-schemes.app.planning.vic.gov.au/">Victorian planning schemes</a>. Map © <a href="https://openfreemap.org">OpenFreeMap</a>, © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
+    <p><a href="https://github.com/ryanward-io/vic-planning-assistant">Source on GitHub</a> · by <a href="https://ryanward.dev">Ryan Ward</a></p>
+  </footer>
+</body>
+</html>
